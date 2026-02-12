@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="facebook-domain-verification" content="kg7xbu19fe2qfoshqmxvo79sxco38f" />
+    <title>Аудит кадровых документов — Мир Права | mirprava.kz</title>
+    <link rel="icon" type="image/jpeg" href="/favicon.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #FFFFFF;
+            --bg-alt: #F6F7FA;
+            --navy: #1B2A4A;
+            --text: #1B2A4A;
+            --text-secondary: #5A6680;
+            --gold: #C8A84E;
+            --gold-hover: #b8963e;
+            --danger: #D63031;
+            --success: #27AE60;
+            --border: #E8EBF0;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Onest', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--navy);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 { font-size: 28px; font-weight: 900; }
+        h2 { font-size: 24px; font-weight: 800; }
+        h3 { font-size: 20px; font-weight: 700; }
+        h4 { font-size: 17px; font-weight: 700; }
+
+        section { padding: 60px 0; }
+        .bg-alt { background: var(--bg-alt); }
+
+        .btn {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--white);
+            padding: 16px 28px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            width: 100%;
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn:hover { background: var(--gold-hover); transform: translateY(-1px); }
+        .btn:active { transform: translateY(0); }
+
+        .btn-shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .btn-pulse {
+            animation: pulse 2.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(200, 168, 78, 0.4); }
+            50% { box-shadow: 0 0 0 12px rgba(200, 168, 78, 0); }
+        }
+
+        .sub-cta {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 12px;
+        }
+
+        /* Fade-up animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- TOP BAR --- */
+        .topbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+        }
+        .topbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--navy);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+        }
+        .topbar-btn {
+            background: var(--gold);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        .topbar-btn:hover { background: var(--gold-hover); }
+
+        /* --- HERO --- */
+        .hero {
+            padding: 90px 0 60px;
+        }
+        .hero-pretitle {
+            display: inline-block;
+            background: #FFF3E0;
+            color: #E65100;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .hero h1 {
+            margin-bottom: 16px;
+        }
+        .hero-sub {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+        .hero-expert {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: var(--bg-alt);
+            border-radius: 12px;
+        }
+        .hero-expert img {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .hero-expert-name {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+        .hero-expert-role {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .danger-block {
+            background: #FFF5F5;
+            border: 1px solid #FFCDD2;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .danger-icon {
+            font-size: 28px;
+            animation: wobble 2s ease-in-out infinite;
+        }
+        @keyframes wobble {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        .danger-block p {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--danger);
+        }
+        .trust-row {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+        .trust-badge {
+            background: var(--bg-alt);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* --- WHAT YOU GET --- */
+        .benefit-list { display: grid; gap: 16px; }
+        .benefit-item {
+            display: flex;
+            gap: 14px;
+            padding: 18px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+        .benefit-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-alt);
+            border-radius: 10px;
+        }
+        .benefit-item h4 { margin-bottom: 4px; font-size: 15px; }
+        .benefit-item p { font-size: 14px; color: var(--text-secondary); }
+
+        /* --- WHY EMPLOYERS LOSE --- */
+        .problem-cards { display: grid; gap: 14px; }
+        .problem-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .problem-card-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .problem-card h4 { margin-bottom: 6px; }
+        .problem-card p { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; }
+        .problem-penalty {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--danger);
+        }
+
+        /* --- STATS --- */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .stat-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-card.full-width { grid-column: 1 / -1; }
+        .stat-number {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--navy);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .stat-number.red { color: var(--danger); }
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* --- QUIZ --- */
+        .quiz-section { min-height: 500px; }
+        .quiz-box {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        .progress-bar {
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            margin-bottom: 28px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--gold);
+            width: 0%;
+            transition: width 0.4s ease;
+            border-radius: 3px;
+        }
+        .quiz-question { font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+        .quiz-options { display: grid; gap: 10px; }
+        .quiz-option {
+            background: var(--white);
+            border: 2px solid var(--border);
+            padding: 14px 18px;
+            border-radius: 10px;
+            text-align: left;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            color: var(--text);
+            width: 100%;
+        }
+        .quiz-option:hover { border-color: var(--gold); background: #FFFBF0; }
+        .quiz-option.selected {
+            border-color: var(--gold);
+            background: #FFF8E1;
+        }
+        .quiz-back {
+            margin-top: 20px;
+            background: none;
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        .quiz-back:hover { border-color: var(--text-secondary); }
+
+        /* Result */
+        .result-level {
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .result-level.risk-high { background: #FFF5F5; border: 1px solid #FFCDD2; }
+        .result-level.risk-medium { background: #FFFDE7; border: 1px solid #FFF9C4; }
+        .result-level.risk-low { background: #E8F5E9; border: 1px solid #C8E6C9; }
+        .result-level-label {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+        .risk-high .result-level-label { color: var(--danger); }
+        .risk-medium .result-level-label { color: #F57F17; }
+        .risk-low .result-level-label { color: var(--success); }
+        .result-level h3 { font-size: 18px; }
+
+        .form-group { margin-bottom: 14px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border 0.2s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        /* --- CASES --- */
+        .case-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        .case-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .case-badge.warning { background: #FFF3E0; color: #E65100; }
+        .case-badge.success { background: #E8F5E9; color: #2E7D32; }
+        .case-card h4 { margin-bottom: 10px; }
+        .case-card p { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; }
+        .case-result {
+            font-weight: 700;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .case-result.lose { color: var(--danger); }
+        .case-result.win { color: var(--success); }
+
+        /* --- SERVICES --- */
+        .service-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 14px;
+            position: relative;
+        }
+        .service-card.popular {
+            border-color: var(--gold);
+            box-shadow: 0 4px 20px rgba(200,168,78,0.15);
+        }
+        .popular-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--gold);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .service-card h4 { margin-bottom: 10px; font-size: 18px; }
+        .service-list {
+            list-style: none;
+            margin-bottom: 18px;
+        }
+        .service-list li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 4px 0;
+            padding-left: 22px;
+            position: relative;
+        }
+        .service-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+        .service-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            background: none;
+            font-family: inherit;
+            width: 100%;
+            transition: 0.2s;
+        }
+        .service-btn:hover { background: var(--gold); color: var(--white); }
+
+        /* --- EXPERT --- */
+        .expert-card {
+            text-align: center;
+        }
+        .expert-card img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .expert-card h3 { margin-bottom: 4px; }
+        .expert-role {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+        .expert-quote {
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--bg-alt);
+            border-radius: 12px;
+            position: relative;
+        }
+        .expert-quote::before {
+            content: '\201C';
+            font-size: 48px;
+            color: var(--gold);
+            position: absolute;
+            top: 4px;
+            left: 14px;
+            line-height: 1;
+            font-style: normal;
+        }
+        .expert-quote p { padding-left: 24px; }
+        .expert-creds {
+            display: grid;
+            gap: 8px;
+            text-align: left;
+        }
+        .expert-cred {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 8px 12px;
+            background: var(--bg-alt);
+            border-radius: 8px;
+        }
+
+        /* --- FINAL CTA --- */
+        .final-cta {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+        }
+        .final-cta h2 { color: var(--white); margin-bottom: 16px; }
+        .final-cta p { color: rgba(255,255,255,0.7); margin-bottom: 24px; }
+
+        /* --- STICKY CTA --- */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border);
+            padding: 12px 20px;
+            padding-bottom: calc(12px + env(safe-area-inset-bottom));
+            z-index: 99;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .sticky-cta.visible {
+            transform: translateY(0);
+        }
+        .sticky-cta .btn {
+            max-width: 480px;
+            margin: 0 auto;
+            display: block;
+            padding: 14px 24px;
+            font-size: 15px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.6);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+        footer .logo { color: var(--white); margin-bottom: 12px; }
+        footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+        footer a:hover { color: var(--white); }
+
+        .hidden { display: none !important; }
+        .section-subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+        .section-title { margin-bottom: 10px; }
+
+        /* Mobile-first — already 480px, desktop tweaks */
+        @media (min-width: 540px) {
+            .container { padding: 0 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <div class="container">
+            <div class="logo">Мир Права</div>
+            <button class="topbar-btn" onclick="scrollToQuiz()">Записаться</button>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <span class="hero-pretitle">Хотите уволить сотрудника, но боитесь шантажа и суда?</span>
+
+            <h1>Проведём аудит ваших кадровых документов и покажем каждую уязвимость — до того, как ею воспользуются</h1>
+
+            <p class="hero-sub">На консультации разберём вашу ситуацию, найдём дыры в договорах, инструкциях и приказах — и составим пошаговый план защиты конкретно под ваш бизнес</p>
+
+            <div class="hero-expert">
+                <img src="/main_photo.jpeg" alt="Баяндина Майнур Окановна">
+                <div>
+                    <div class="hero-expert-name">Баяндина Майнур Окановна</div>
+                    <div class="hero-expert-role">Юрист, 30 лет практики, 500+ трудовых дел</div>
+                </div>
+            </div>
+
+            <div class="danger-block">
+                <span class="danger-icon">💣</span>
+                <p>Средняя цена ошибки при увольнении: от 500 000 до 1 500 000 ₸</p>
+            </div>
+
+            <button id="hero-cta" class="btn btn-pulse btn-shimmer" onclick="scrollToQuiz()">Записаться на юридическую консультацию →</button>
+            <p class="sub-cta">Юрист с 30-летним опытом · Перезвоним за 30 минут</p>
+
+            <div class="trust-row">
+                <span class="trust-badge">30 лет практики</span>
+                <span class="trust-badge">50+ компаний</span>
+                <span class="trust-badge">По всему Казахстану</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT YOU GET -->
+    <section class="bg-alt">
+        <div class="container">
+            <h2 class="section-title fade-up">Что вы получите на консультации</h2>
+            <p class="section-subtitle fade-up">Полный разбор вашей ситуации за одну встречу</p>
+
+            <div class="benefit-list">
+                <div class="benefit-item fade-up">
+                    <div class="benefit-icon">🔍</div>
+                    <div>
+                        <h4>Экспресс-аудит кадровых документов</h4>
+                        <p>Проверим договоры, инструкции, приказы, табели</p>
+                    </div>
+                </div>
+                <div class="benefit-item fade-up">
+                    <div class="benefit-icon">💰</div>
+                    <div>
+                        <h4>Расчёт финансовых рисков</h4>
+                        <p>Укажем на риски потерь в деньгах, если сотрудник подаст в суд</p>
+                    </div>
+                </div>
+                <div class="benefit-item fade-up">
+                    <div class="benefit-icon">🗺️</div>
+                    <div>
+                        <h4>Карта уязвимостей с приоритетами</h4>
+                        <p>Подсветим что закрыть срочно, а что может подождать</p>
+                    </div>
+                </div>
+                <div class="benefit-item fade-up">
+                    <div class="benefit-icon">📋</div>
+                    <div>
+                        <h4>Пошаговый план решения</h4>
+                        <p>Конкретно под вашу ситуацию и размер компании</p>
+                    </div>
+                </div>
+                <div class="benefit-item fade-up">
+                    <div class="benefit-icon">⚖️</div>
+                    <div>
+                        <h4>Честная оценка шансов</h4>
+                        <p>Можно ли увольнять сейчас или лучше сначала подготовиться</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 28px;" class="fade-up">
+                <button class="btn" onclick="scrollToQuiz()">Записаться на юридическую консультацию →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY EMPLOYERS LOSE -->
+    <section>
+        <div class="container">
+            <h2 class="section-title fade-up">Прямо сейчас в ваших кадрах тикает бомба</h2>
+            <p class="section-subtitle fade-up">Первый же сотрудник, обратившийся к юристу, использует её против вас</p>
+
+            <div class="problem-cards">
+                <div class="problem-card fade-up">
+                    <span class="problem-card-icon">📄</span>
+                    <h4>Трудовой договор просрочен или типовой из интернета</h4>
+                    <p>Не защищает работодателя, легко оспаривается в суде</p>
+                    <span class="problem-penalty">Штраф: от 30 до 150 МРП</span>
+                </div>
+                <div class="problem-card fade-up">
+                    <span class="problem-card-icon">📋</span>
+                    <h4>Должностные инструкции 5–10 летней давности</h4>
+                    <p>Невозможно доказать нарушение обязанностей сотрудником</p>
+                    <span class="problem-penalty">Восстановление + компенсация</span>
+                </div>
+                <div class="problem-card fade-up">
+                    <span class="problem-card-icon">🕐</span>
+                    <h4>Табель учёта рабочего времени не ведётся</h4>
+                    <p>Любые претензии по переработкам будут удовлетворены судом</p>
+                    <span class="problem-penalty">Штраф от 500 000 ₸ и выше</span>
+                </div>
+                <div class="problem-card fade-up">
+                    <span class="problem-card-icon">✍️</span>
+                    <h4>Акты без подписей, приказы задним числом</h4>
+                    <p>Все дисциплинарные взыскания признаются незаконными</p>
+                    <span class="problem-penalty">Проверка + суммарные штрафы</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="bg-alt">
+        <div class="container">
+            <h2 class="section-title fade-up" style="text-align:center;">Цена юридической слабости</h2>
+            <p class="section-subtitle fade-up" style="text-align:center;">Статистика трудовых споров в Казахстане</p>
+
+            <div class="stats-grid fade-up">
+                <div class="stat-card">
+                    <div class="stat-number red">80%</div>
+                    <div class="stat-label">работодателей проигрывают трудовые споры</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number red">1.5М ₸</div>
+                    <div class="stat-label">средняя сумма потерь при проигрыше</div>
+                </div>
+                <div class="stat-card full-width">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">трудовых дел в нашей практике</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="quiz-section" id="quiz-section">
+        <div class="container">
+            <div class="fade-up">
+                <h2 class="section-title" style="text-align:center;">Ответьте на 5 вопросов</h2>
+                <p class="section-subtitle" style="text-align:center;">Мы проведём юридический аудит с разбором вашей ситуации — так консультация будет полезной с первой минуты</p>
+            </div>
+
+            <div class="quiz-box" id="quiz-box">
+                <!-- Quiz questions -->
+                <div id="quiz-questions">
+                    <div class="quiz-header">
+                        <span id="quiz-step">Вопрос 1 из 5</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" id="quiz-progress"></div></div>
+                    <div id="quiz-q" class="quiz-question"></div>
+                    <div id="quiz-opts" class="quiz-options"></div>
+                    <button id="quiz-back-btn" class="quiz-back hidden" onclick="quizBack()">← Назад</button>
+                </div>
+
+                <!-- Result -->
+                <div id="quiz-result" class="hidden" style="text-align:center;">
+                    <div id="result-level" class="result-level">
+                        <div id="result-label" class="result-level-label"></div>
+                        <h3 id="result-title"></h3>
+                    </div>
+
+                    <h3 style="margin-bottom: 20px;">Записаться на консультацию</h3>
+                    <form id="lead-form" onsubmit="submitLead(event)">
+                        <div class="form-group">
+                            <label>Ваше имя</label>
+                            <input type="text" class="form-control" id="lead-name" required placeholder="Введите имя">
+                        </div>
+                        <div class="form-group">
+                            <label>Телефон</label>
+                            <input type="tel" class="form-control" id="lead-phone" required placeholder="+7 (___) ___-__-__">
+                        </div>
+                        <button type="submit" class="btn">Записаться на консультацию</button>
+                        <p class="sub-cta">Перезвоним в течение 30 минут</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASES -->
+    <section class="bg-alt">
+        <div class="container">
+            <h2 class="section-title fade-up">Что бывает без аудита — и как мы это решаем</h2>
+            <p class="section-subtitle fade-up">Реальные истории из нашей практики</p>
+
+            <div class="case-card fade-up">
+                <span class="case-badge warning">Без аудита</span>
+                <h4>Тренер не работал 2 года — отсудил 700 000 ₸</h4>
+                <p>Спортивный колледж. Тренер приходил когда хотел, занятия не проводил. Договор не обновляли с 2011 года, инструкция устарела, актов фиксации нарушений нет.</p>
+                <p class="case-result lose">Итог: −700 000 ₸, тренер восстановлен и продолжил так же</p>
+            </div>
+
+            <div class="case-card fade-up">
+                <span class="case-badge success">После аудита</span>
+                <h4>Хаос в университете → полный порядок за 6 месяцев</h4>
+                <p>Частный ВУЗ. Преподаватели не вели пары, 4 «мёртвые души» на зарплате. Провели аудит: новые договоры, инструкции, KPI. Выявили схемы.</p>
+                <p class="case-result win">Итог: дисциплина, полные аудитории, «мёртвые души» убраны — всё законно</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section>
+        <div class="container">
+            <h2 class="section-title fade-up">Закрываем каждую уязвимость под ключ</h2>
+            <p class="section-subtitle fade-up">На консультации подберём подходящий формат работы</p>
+
+            <div class="service-card fade-up">
+                <h4>Экспресс-аудит</h4>
+                <ul class="service-list">
+                    <li>Анализ всех кадровых документов</li>
+                    <li>Карта рисков с приоритетами</li>
+                    <li>План устранения уязвимостей</li>
+                    <li>Разбор текущих ситуаций</li>
+                </ul>
+                <button class="service-btn" onclick="scrollToQuiz()">Записаться на консультацию</button>
+            </div>
+
+            <div class="service-card popular fade-up">
+                <span class="popular-badge">Популярный выбор</span>
+                <h4>Полная защита</h4>
+                <ul class="service-list">
+                    <li>Всё из экспресс-аудита</li>
+                    <li>Новые трудовые договоры и инструкции</li>
+                    <li>Обучение HR правильным процедурам</li>
+                    <li>Сопровождение 3 месяца</li>
+                </ul>
+                <button class="service-btn" onclick="scrollToQuiz()">Записаться на консультацию</button>
+            </div>
+
+            <div class="service-card fade-up">
+                <h4>Юрист на абонементе</h4>
+                <ul class="service-list">
+                    <li>Юрист на связи по всем кадровым вопросам</li>
+                    <li>Проверка каждого увольнения</li>
+                    <li>Актуализация документов</li>
+                    <li>Представительство при проверках</li>
+                </ul>
+                <button class="service-btn" onclick="scrollToQuiz()">Записаться на консультацию</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERT -->
+    <section class="bg-alt">
+        <div class="container">
+            <div class="expert-card fade-up">
+                <img src="/main_photo.jpeg" alt="Баяндина Майнур Окановна">
+                <h3>Баяндина Майнур Окановна</h3>
+                <div class="expert-role">Юрист · Член Палаты юридических консультантов</div>
+
+                <div class="expert-quote">
+                    <p>За 30 лет я защищала и работников, и работодателей. Знаю все уловки с обеих сторон — поэтому могу выстроить защиту, которую невозможно пробить.</p>
+                </div>
+
+                <div class="expert-creds">
+                    <div class="expert-cred">20 лет преподавания на юрфаке КазНУ им. аль-Фараби</div>
+                    <div class="expert-cred">Опыт работы в крупных холдингах и АО</div>
+                    <div class="expert-cred">500+ трудовых дел по всему Казахстану</div>
+                    <div class="expert-cred">Собственная практика с 2020 года</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+        <div class="container" style="text-align:center;">
+            <h2 class="fade-up">Не ждите, пока сотрудник обратится к юристу первым</h2>
+            <p class="fade-up">Запишитесь на консультацию — разберём вашу ситуацию и покажем все уязвимости</p>
+            <button class="btn fade-up" onclick="scrollToQuiz()" style="background: var(--gold);">Записаться на консультацию →</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="logo">Мир Права</div>
+            <p style="margin-bottom: 12px;"><a href="tel:+77008358257">+7 (700) 835-82-57</a></p>
+            <p>&copy; 2025 Мир Права. Все права защищены.<br><a href="/privacy.html" style="text-decoration: underline;">Политика конфиденциальности</a></p>
+        </div>
+    </footer>
+
+    <!-- STICKY CTA -->
+    <div class="sticky-cta" id="sticky-cta">
+        <button class="btn btn-shimmer" onclick="scrollToQuiz()">Записаться на консультацию →</button>
+    </div>
+
+    <script>
+        // ============ QUIZ ============
+        const questions = [
+            { q: 'Сколько сотрудников в компании?', opts: ['1–10', '11–50', '51–200', 'Более 200'], scores: [0,0,0,0] },
+            { q: 'Когда последний раз обновляли трудовые договоры?', opts: ['Менее года назад', '1–3 года назад', 'Более 3 лет назад', 'Не помню'], scores: [0,1,2,2] },
+            { q: 'Есть ли актуальная должностная инструкция у каждого сотрудника?', opts: ['Да, у всех', 'У некоторых', 'Нет', 'Не уверен'], scores: [0,1,2,2] },
+            { q: 'Ведётся ли табель учёта рабочего времени?', opts: ['Да, ведётся', 'Формально', 'Нет', 'Не знаю'], scores: [0,1,2,2] },
+            { q: 'Есть ли сейчас проблемная ситуация с сотрудником?', opts: ['Нет', 'Возможно скоро', 'Да, есть конфликт', 'Нужно срочно уволить'], scores: [0,1,2,2] }
+        ];
+
+        let step = 0;
+        let answers = [];
+
+        function renderQuiz() {
+            const data = questions[step];
+            document.getElementById('quiz-q').textContent = data.q;
+            document.getElementById('quiz-step').textContent = `Вопрос ${step + 1} из ${questions.length}`;
+            document.getElementById('quiz-progress').style.width = `${((step + 1) / questions.length) * 100}%`;
+
+            const optsEl = document.getElementById('quiz-opts');
+            optsEl.innerHTML = '';
+            data.opts.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-option';
+                btn.textContent = opt;
+                btn.onclick = () => selectOption(i, btn);
+                optsEl.appendChild(btn);
+            });
+
+            document.getElementById('quiz-back-btn').classList.toggle('hidden', step === 0);
+        }
+
+        function selectOption(index, btn) {
+            answers[step] = index;
+            document.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+
+            setTimeout(() => {
+                if (step < questions.length - 1) {
+                    step++;
+                    renderQuiz();
+                } else {
+                    showResult();
+                }
+            }, 350);
+        }
+
+        function quizBack() {
+            if (step > 0) {
+                step--;
+                renderQuiz();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('quiz-questions').classList.add('hidden');
+            document.getElementById('quiz-result').classList.remove('hidden');
+
+            let score = 0;
+            answers.forEach((a, i) => { score += questions[i].scores[a]; });
+
+            const levelEl = document.getElementById('result-level');
+            const labelEl = document.getElementById('result-label');
+            const titleEl = document.getElementById('result-title');
+
+            if (score >= 6) {
+                levelEl.className = 'result-level risk-high';
+                labelEl.textContent = 'Высокий риск';
+                titleEl.textContent = 'Критический уровень — нужно действовать сейчас';
+            } else if (score >= 3) {
+                levelEl.className = 'result-level risk-medium';
+                labelEl.textContent = 'Средний риск';
+                titleEl.textContent = 'Есть уязвимости, которые могут стоить дорого';
+            } else {
+                levelEl.className = 'result-level risk-low';
+                labelEl.textContent = 'Низкий риск';
+                titleEl.textContent = 'Базовые документы в порядке, но рекомендуем проверить детали';
+            }
+        }
+
+        function submitLead(e) {
+            e.preventDefault();
+            const name = document.getElementById('lead-name').value;
+            const phone = document.getElementById('lead-phone').value;
+            console.log('Lead:', { name, phone, answers, page: 'audit' });
+            window.location.href = '/thank.html';
+        }
+
+        // Init quiz
+        renderQuiz();
+
+        // ============ SCROLL ============
+        function scrollToQuiz() {
+            document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Smooth scroll for all anchors
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // ============ FADE-UP ANIMATIONS ============
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+        // ============ STICKY CTA ============
+        const heroCta = document.getElementById('hero-cta');
+        const stickyCta = document.getElementById('sticky-cta');
+
+        const stickyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                stickyCta.classList.toggle('visible', !entry.isIntersecting);
+            });
+        }, { threshold: 0 });
+
+        stickyObserver.observe(heroCta);
+    </script>
+</body>
+</html>
