@@ -101,12 +101,10 @@
         .role-card p { font-size: 14px; color: var(--text-gray); margin-bottom: 15px; }
 
         .lawyer-photo {
-            width: 100%; height: 500px;
-            background: #d1d5db;
-            border: 3px dashed #9ca3af;
+            width: 100%; height: auto;
             border-radius: 20px;
-            display: flex; align-items: center; justify-content: center;
-            color: #4b5563; font-weight: 700; text-align: center;
+            object-fit: cover;
+            display: block;
         }
 
         /* --- QUIZ --- */
@@ -208,7 +206,7 @@
                         <span class="badge">По всему Казахстану</span>
                     </div>
                     <h1>Трудовые споры в Казахстане: защитим ваши права</h1>
-                    <p class="hero-sub">Бесплатная консультация от юриста с 30-летним опытом. 80% дел выигрываем.</p>
+                    <p class="hero-sub">Юрист с 30-летним опытом. 80% дел выигрываем.</p>
                     
                     <div class="role-cards">
                         <div class="role-card" onclick="startQuiz('employer')">
@@ -226,9 +224,7 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <div class="lawyer-photo">
-                        ФОТО ЮРИСТА МАЙНУР<br>(400x500px)
-                    </div>
+                    <img src="main_photo.jpeg" alt="Юрист Майнур — эксперт по трудовым спорам" class="lawyer-photo">
                 </div>
             </div>
         </div>
@@ -263,7 +259,7 @@
                     </div>
 
                     <div style="max-width: 400px; margin: 0 auto;">
-                        <h3 style="margin-bottom: 20px;">Получите бесплатную консультацию</h3>
+                        <h3 style="margin-bottom: 20px;">Получите консультацию</h3>
                         <form onsubmit="submitForm(event)">
                             <div class="form-group">
                                 <label>Ваше имя</label>
@@ -444,7 +440,7 @@
         <div class="container">
             <h2 style="color: white; margin-bottom: 20px;">Готовы решить вашу проблему?</h2>
             <p style="font-size: 18px; margin-bottom: 30px;">Оставьте заявку — перезвоним в течение 30 минут</p>
-            <button class="btn" onclick="document.getElementById('hero-block').scrollIntoView({behavior:'smooth'})">Получить бесплатную консультацию</button>
+            <button class="btn" onclick="document.getElementById('hero-block').scrollIntoView({behavior:'smooth'})">Получить консультацию</button>
         </div>
     </section>
 
@@ -474,7 +470,7 @@
                     <li>Отсутствие актов и фиксации нарушений</li>
                     <li>Неправильные процедуры увольнения</li>
                 </ul>
-                <p style="margin-top:15px">Бесплатный аудит за 30 минут покажет конкретные дыры и как их закрыть.</p>`
+                <p style="margin-top:15px">Аудит за 30 минут покажет конкретные дыры и как их закрыть.</p>`
             },
             worker: {
                 questions: [
