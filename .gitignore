@@ -1,7 +1,9 @@
-.vercel
-*.mp4
-*.docx
-*.pdf
-.DS_Store
-~$*
-Креативы/
+# Ignore everything
+*
+
+# Allow site folder
+!site/
+!site/**
+
+# Allow this file
+!.gitignore
