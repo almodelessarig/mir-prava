@@ -162,6 +162,51 @@
         .result-text.win { color: var(--success); }
         .result-text.lose { color: var(--danger); }
 
+        /* --- EXPERT --- */
+        .expert-block {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .expert-photo img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+        }
+        .expert-info h3 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .expert-role {
+            font-size: 16px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .expert-bio p {
+            color: var(--text-gray);
+            margin-bottom: 12px;
+        }
+        .expert-awards {
+            margin: 20px 0;
+            display: grid;
+            gap: 10px;
+        }
+        .award-item {
+            font-size: 14px;
+            color: var(--text-dark);
+            padding: 8px 12px;
+            background: var(--bg-light);
+            border-radius: 8px;
+        }
+        .expert-motto {
+            font-style: italic;
+            color: var(--text-gray);
+            margin-top: 15px;
+            font-size: 15px;
+        }
+
         /* --- FAQ --- */
         .faq-item { border-bottom: 1px solid #e5e7eb; padding: 20px 0; }
         .faq-question { font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; font-size: 18px; }
@@ -184,6 +229,8 @@
             .lawyer-photo { height: 350px; max-width: 100%; }
             .section-title { font-size: 28px; }
             h1 { font-size: 32px; }
+            .expert-block { grid-template-columns: 1fr; text-align: center; }
+            .expert-photo img { max-width: 250px; margin: 0 auto; display: block; }
         }
     </style>
 </head>
@@ -380,6 +427,32 @@
                 <p><strong>Ситуация:</strong> Частный вуз. Преподаватели не вели пары, 4 «мёртвые души» на зарплате.</p>
                 <p style="margin-top: 10px;"><strong>Что сделали:</strong> Новые договоры, инструкции, KPI. Выявили схемы.</p>
                 <p class="result-text win">✅ Результат: Через 6 месяцев — дисциплина, полные аудитории, «мёртвые души» убраны.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Ваш эксперт</h2>
+            <div class="expert-block">
+                <div class="expert-photo">
+                    <img src="main_photo.jpeg" alt="Баяндина Майнур Окановна — юрист">
+                </div>
+                <div class="expert-info">
+                    <h3>Баяндина Майнур Окановна</h3>
+                    <p class="expert-role">Юрист · Член Палаты юридических консультантов</p>
+                    <div class="expert-bio">
+                        <p>27 лет практического опыта. Работала юристом и руководящим работником в крупных холдингах, акционерных обществах, ТОО, государственных и частных компаниях. Веду юридическое сопровождение компаний, выступаю представителем в судах от имени физических и юридических лиц.</p>
+                        <p>20 лет преподавала на юридическом факультете КазНУ имени аль-Фараби. С 2020 года — собственная юридическая практика.</p>
+                    </div>
+                    <div class="expert-awards">
+                        <div class="award-item">🏅 Юбилейная медаль «80 лет КазНУ имени аль-Фараби»</div>
+                        <div class="award-item">🏅 «Лучшая двадцатка преподавателей КазНУ им. Аль-Фараби» (2015)</div>
+                        <div class="award-item">🏅 Юбилейная медаль «20 лет Вооружённых сил РК»</div>
+                        <div class="award-item">🏅 Памятная медаль «30-летие АО КЦДС Атакент»</div>
+                    </div>
+                    <p class="expert-motto">Люблю жить и помогать людям находить решение в разных жизненных ситуациях.</p>
+                </div>
             </div>
         </div>
     </section>
