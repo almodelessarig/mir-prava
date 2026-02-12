@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Страница не найдена | Мир Права</title>
+    <meta name="description" content="Страница не найдена. Вернитесь на главную страницу Мир Права.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --primary-light: #2a4a73;
+            --accent: #c9a227;
+            --accent-hover: #b08d1f;
+            --text-dark: #1f2937;
+            --text-gray: #4b5563;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border: #e5e7eb;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 64px 16px;
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .icon-wrapper {
+            margin-bottom: 32px;
+        }
+
+        .icon-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 96px;
+            height: 96px;
+            background: rgba(201, 162, 39, 0.1);
+            border-radius: 50%;
+        }
+
+        .icon-circle i {
+            font-size: 48px;
+            color: var(--accent);
+        }
+
+        .error-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(80px, 20vw, 200px);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+            line-height: 1;
+        }
+
+        h1 {
+            font-size: clamp(28px, 5vw, 48px);
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .description {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .joke-card {
+            background: var(--white);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .joke-card-inner {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            text-align: left;
+        }
+
+        .joke-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: rgba(201, 162, 39, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .joke-icon i {
+            font-size: 20px;
+            color: var(--accent);
+        }
+
+        .joke-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .joke-content h3 i {
+            color: rgba(201, 162, 39, 0.3);
+            font-size: 12px;
+            margin-right: 8px;
+        }
+
+        .joke-content p {
+            color: var(--text-gray);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 64px;
+        }
+
+        @media (min-width: 640px) {
+            .buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            box-shadow: 0 8px 25px rgba(201, 162, 39, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--text-dark);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-light);
+        }
+
+        .btn-secondary i {
+            color: var(--accent);
+        }
+
+        .links-section {
+            padding-top: 48px;
+            border-top: 1px solid var(--border);
+        }
+
+        .links-section .label {
+            color: var(--text-gray);
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 640px) {
+            .links-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .link-card {
+            padding: 24px;
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .link-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-color: rgba(201, 162, 39, 0.3);
+        }
+
+        .link-card i {
+            font-size: 24px;
+            color: var(--accent);
+            margin-bottom: 12px;
+            transition: transform 0.3s;
+        }
+
+        .link-card:hover i {
+            transform: scale(1.1);
+        }
+
+        .link-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .link-card p {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .footer-info {
+            margin-top: 48px;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="content">
+            <!-- Animated Icon -->
+            <div class="icon-wrapper float-animation">
+                <div class="icon-circle">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+            </div>
+
+            <!-- 404 Number -->
+            <div class="error-number fade-in" style="animation-delay: 0.1s;">
+                404
+            </div>
+
+            <!-- Heading -->
+            <h1 class="fade-in" style="animation-delay: 0.2s;">
+                Страница не найдена
+            </h1>
+
+            <!-- Description -->
+            <p class="description fade-in" style="animation-delay: 0.3s;">
+                К сожалению, запрашиваемая страница не существует или была перемещена. Возможно, вы перешли по устаревшей ссылке или ошиблись в адресе.
+            </p>
+
+            <!-- Legal themed joke -->
+            <div class="joke-card fade-in" style="animation-delay: 0.4s;">
+                <div class="joke-card-inner">
+                    <div class="joke-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <div class="joke-content">
+                        <h3>
+                            <i class="fas fa-quote-left"></i>
+                            Юридический факт
+                        </h3>
+                        <p>
+                            В трудовом споре важно найти правильный путь — как видите, даже в интернете легко заблудиться!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="buttons fade-in" style="animation-delay: 0.5s;">
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fas fa-home"></i>
+                    <span>Вернуться на главную</span>
+                </a>
+
+                <a href="tel:+77000000000" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i>
+                    <span>+7 (700) 000-00-00</span>
+                </a>
+            </div>
+
+            <!-- Helpful Links -->
+            <div class="links-section fade-in" style="animation-delay: 0.6s;">
+                <p class="label">Возможно, вас заинтересует:</p>
+                <div class="links-grid">
+                    <a href="index.html#services" class="link-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Услуги</h4>
+                        <p>Трудовые споры для работников и работодателей</p>
+                    </a>
+
+                    <a href="index.html#cases" class="link-card">
+                        <i class="fas fa-folder-open"></i>
+                        <h4>Кейсы</h4>
+                        <p>Реальные истории наших клиентов</p>
+                    </a>
+
+                    <a href="index.html#faq" class="link-card">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>Вопросы</h4>
+                        <p>Ответы на частые вопросы</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Info -->
+            <div class="footer-info fade-in" style="animation-delay: 0.7s;">
+                <p>Ошибка 404 | Мир Права — Трудовые споры в Казахстане</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

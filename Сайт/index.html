@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="facebook-domain-verification" content="kg7xbu19fe2qfoshqmxvo79sxco38f" />
+    <title>Мир Права — Трудовые споры в Казахстане | Юрист Майнур</title>
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --accent: #c9a227;
+            --accent-hover: #b08d1f;
+            --text-dark: #1f2937;
+            --text-gray: #4b5563;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --danger: #ef4444;
+            --success: #10b981;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+        }
+        .btn:hover { background: var(--accent-hover); transform: translateY(-2px); }
+        .btn-block { width: 100%; }
+
+        section { padding: 80px 0; }
+        .bg-light { background: var(--bg-light); }
+        .text-center { text-align: center; }
+        .hidden { display: none !important; }
+
+        /* --- HEADER --- */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            z-index: 100;
+        }
+        .header-wrap { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 800; text-transform: uppercase; color: var(--primary); }
+        .phone { font-weight: 700; color: var(--primary); text-decoration: none; font-size: 18px; }
+
+        /* --- HERO --- */
+        .hero { padding: 60px 0; }
+        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
+        .badges { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .badge { background: #e0f2fe; color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 14px; font-weight: 600; }
+        
+        .hero h1 { font-size: 42px; margin-bottom: 15px; }
+        .hero-sub { font-size: 18px; color: var(--text-gray); margin-bottom: 30px; }
+
+        .role-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .role-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            background: var(--white);
+        }
+        .role-card:hover { border-color: var(--accent); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .role-icon { font-size: 32px; display: block; margin-bottom: 10px; }
+        .role-card h3 { font-size: 18px; margin-bottom: 10px; }
+        .role-card p { font-size: 14px; color: var(--text-gray); margin-bottom: 15px; }
+
+        .lawyer-photo {
+            width: 100%; height: auto;
+            border-radius: 20px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* --- QUIZ --- */
+        #quiz-section { background: var(--bg-light); min-height: 600px; display: flex; align-items: center; }
+        .quiz-box {
+            background: var(--white);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .progress-bar { height: 8px; background: #e5e7eb; border-radius: 4px; margin: 15px 0 30px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: 0.3s; }
+        
+        .question-title { font-size: 22px; font-weight: 700; margin-bottom: 25px; }
+        .options { display: grid; gap: 15px; }
+        .option-btn {
+            background: var(--white); border: 2px solid #e5e7eb;
+            padding: 15px 20px; border-radius: 10px; text-align: left;
+            font-size: 16px; cursor: pointer; transition: 0.2s;
+            font-family: inherit; width: 100%; color: var(--text-dark);
+        }
+        .option-btn:hover { border-color: var(--accent); background: #fffbeb; }
+        
+        .hint { background: #fff7ed; border-left: 4px solid var(--accent); padding: 15px; margin-top: 20px; font-size: 14px; color: #9a3412; }
+        
+        /* --- RESULT & FORM --- */
+        .result-title { font-size: 28px; margin-bottom: 20px; }
+        .result-box { background: #eff6ff; padding: 25px; border-radius: 12px; margin-bottom: 30px; }
+        .result-box li { margin-bottom: 8px; margin-left: 20px; }
+        
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
+        .form-control { width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 16px; }
+        .trust-badges { margin-top: 20px; font-size: 14px; color: var(--text-gray); display: flex; gap: 15px; justify-content: center; }
+
+        /* --- SECTIONS (Why Us, Cases, etc) --- */
+        .section-title { font-size: 36px; text-align: center; margin-bottom: 50px; }
+        
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .feature-card { text-align: center; padding: 30px; background: var(--white); border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .feature-icon { font-size: 40px; margin-bottom: 15px; display: block; }
+
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
+        .step-num { font-size: 48px; font-weight: 800; color: #e5e7eb; line-height: 1; margin-bottom: 15px; }
+
+        .case-card { background: var(--white); border-radius: 16px; padding: 30px; margin-bottom: 30px; border: 1px solid #e5e7eb; }
+        .case-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+        .tag { padding: 5px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+        .tag-worker { background: #dbeafe; color: #1e40af; }
+        .tag-fail { background: #fee2e2; color: #991b1b; }
+        .tag-success { background: #dcfce7; color: #166534; }
+        .result-text { font-weight: 600; margin-top: 10px; }
+        .result-text.win { color: var(--success); }
+        .result-text.lose { color: var(--danger); }
+
+        /* --- EXPERT --- */
+        .expert-block {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .expert-photo img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+        }
+        .expert-info h3 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .expert-role {
+            font-size: 16px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .expert-bio p {
+            color: var(--text-gray);
+            margin-bottom: 12px;
+        }
+        .expert-awards {
+            margin: 20px 0;
+            display: grid;
+            gap: 10px;
+        }
+        .award-item {
+            font-size: 14px;
+            color: var(--text-dark);
+            padding: 8px 12px;
+            background: var(--bg-light);
+            border-radius: 8px;
+        }
+        .expert-motto {
+            font-style: italic;
+            color: var(--text-gray);
+            margin-top: 15px;
+            font-size: 15px;
+        }
+
+        /* --- FAQ --- */
+        .faq-item { border-bottom: 1px solid #e5e7eb; padding: 20px 0; }
+        .faq-question { font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; font-size: 18px; }
+        .faq-answer { display: none; padding-top: 15px; color: var(--text-gray); }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-icon { transition: 0.3s; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+        /* --- FOOTER --- */
+        footer { background: var(--primary); color: var(--white); padding: 50px 0; text-align: center; }
+        footer a { color: #9ca3af; text-decoration: none; }
+        
+        /* Mobile Adaptations */
+        @media (max-width: 768px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-content { order: 1; }
+            .hero-image { order: 2; margin-top: 30px; }
+            .badges { justify-content: center; }
+            .role-cards { grid-template-columns: 1fr; }
+            .lawyer-photo { height: 350px; max-width: 100%; }
+            .section-title { font-size: 28px; }
+            h1 { font-size: 32px; }
+            .expert-block { grid-template-columns: 1fr; text-align: center; }
+            .expert-photo img { max-width: 250px; margin: 0 auto; display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-wrap">
+            <div class="logo">Мир Права</div>
+            <a href="tel:+77008358257" class="phone">+7 (700) 835-82-57</a>
+        </div>
+    </header>
+
+    <section class="hero" id="hero-block">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="badges">
+                        <span class="badge">30 лет практики</span>
+                        <span class="badge">500+ дел</span>
+                        <span class="badge">По всему Казахстану</span>
+                    </div>
+                    <h1>Трудовые споры в Казахстане: защитим ваши права</h1>
+                    <p class="hero-sub">Юрист с 30-летним опытом. 80% дел выигрываем.</p>
+                    
+                    <div class="role-cards">
+                        <div class="role-card" onclick="startQuiz('employer')">
+                            <span class="role-icon">🏢</span>
+                            <h3>Я работодатель</h3>
+                            <p>Сотрудники шантажируют? Боитесь проиграть суд? Проверим документы.</p>
+                            <button class="btn btn-block" style="font-size: 14px;">Пройти диагностику →</button>
+                        </div>
+                        <div class="role-card" onclick="startQuiz('worker')">
+                            <span class="role-icon">👤</span>
+                            <h3>Я работник</h3>
+                            <p>Уволили незаконно? Не платят? Узнайте, сколько вам должны.</p>
+                            <button class="btn btn-block" style="font-size: 14px;">Узнать свои права →</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="main_photo.jpeg" alt="Юрист Майнур — эксперт по трудовым спорам" class="lawyer-photo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="quiz-section" class="hidden">
+        <div class="container">
+            <div class="quiz-box">
+                <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--text-gray);">
+                    <span id="quiz-step-text">Вопрос 1 из 6</span>
+                    <span style="cursor: pointer;" onclick="closeQuiz()">✕ Закрыть</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+
+                <div id="quiz-question-container">
+                    <h2 id="question-title" class="question-title">Текст вопроса</h2>
+                    <div id="options-container" class="options">
+                        </div>
+                    <div id="hint-box" class="hint hidden"></div>
+                    
+                    <div style="margin-top: 30px;">
+                        <button id="prev-btn" class="btn" style="background: transparent; color: var(--text-gray); border: 1px solid #d1d5db; padding: 10px 20px;" onclick="prevStep()">Назад</button>
+                    </div>
+                </div>
+
+                <div id="result-container" class="hidden text-center">
+                    <h2 class="result-title" id="final-title">Мы проанализировали ваши ответы</h2>
+                    
+                    <div class="result-box text-left">
+                        <h4 style="margin-bottom: 10px;" id="final-subtitle">Результат:</h4>
+                        <div id="final-text">Текст результата</div>
+                    </div>
+
+                    <div style="max-width: 400px; margin: 0 auto;">
+                        <h3 style="margin-bottom: 20px;">Получите консультацию</h3>
+                        <form onsubmit="submitForm(event)">
+                            <div class="form-group">
+                                <label>Ваше имя</label>
+                                <input type="text" class="form-control" required placeholder="Введите имя">
+                            </div>
+                            <div class="form-group">
+                                <label>Телефон</label>
+                                <input type="tel" class="form-control" required placeholder="+7 (___) ___-__-__">
+                            </div>
+                            <div class="form-group">
+                                <label>Мессенджер</label>
+                                <select class="form-control">
+                                    <option>WhatsApp</option>
+                                    <option>Telegram</option>
+                                    <option>Звонок</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-block">Получить консультацию</button>
+                            <p style="font-size: 12px; color: var(--text-gray); margin-top: 15px;">
+                                ✓ Перезвоним за 30 минут<br>✓ Данные защищены
+                            </p>
+                        </form>
+                    </div>
+                    <div class="trust-badges">
+                        <span>📅 30 лет практики</span>
+                        <span>🏢 50+ компаний</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <div class="grid-4">
+                <div class="feature-card">
+                    <span class="feature-icon">📅</span>
+                    <h4>30 лет практики</h4>
+                    <p style="font-size: 14px; margin-top: 10px;">Работаем с трудовыми спорами с 1995 года</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚖️</span>
+                    <h4>500+ дел</h4>
+                    <p style="font-size: 14px; margin-top: 10px;">Знаем обе стороны — и работников, и работодателей</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🇰🇿</span>
+                    <h4>По всему Казахстану</h4>
+                    <p style="font-size: 14px; margin-top: 10px;">Работаем удалённо из любого города</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">💰</span>
+                    <h4>Оплата за результат</h4>
+                    <p style="font-size: 14px; margin-top: 10px;">Для работников — % от выигрыша, вы ничем не рискуете</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-light">
+        <div class="container">
+            <h2 class="section-title">Как мы работаем</h2>
+            <div class="steps-grid">
+                <div>
+                    <div class="step-num">01</div>
+                    <h4>Консультация</h4>
+                    <p>Разбираем ситуацию за 30 минут. Честно скажем шансы</p>
+                </div>
+                <div>
+                    <div class="step-num">02</div>
+                    <h4>Анализ</h4>
+                    <p>Изучаем договор, приказы, акты. Находим ошибки</p>
+                </div>
+                <div>
+                    <div class="step-num">03</div>
+                    <h4>Стратегия</h4>
+                    <p>Составляем план действий. Договариваемся об оплате</p>
+                </div>
+                <div>
+                    <div class="step-num">04</div>
+                    <h4>Сопровождение</h4>
+                    <p>Ведём до результата: переговоры, документы, суд</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Реальные истории клиентов</h2>
+            
+            <div class="case-card">
+                <div class="case-header">
+                    <h4>Вещи вынесли в пакете → 700 000 ₸ компенсации</h4>
+                    <span class="tag tag-worker">Работник</span>
+                </div>
+                <p><strong>Ситуация:</strong> HR-компания в Алматы. Директриса хотела устроить дочь на место сотрудницы. Придумала три «опоздания», вещи вынесли в пакете.</p>
+                <p style="margin-top: 10px;"><strong>Проблема работодателя:</strong> График был устным, акты без подписей, объяснительных не брали.</p>
+                <p class="result-text win">✅ Результат: Суд выигран за 3 месяца. Клиентка получила ~700 000 ₸ и восстановлена.</p>
+            </div>
+
+            <div class="case-card">
+                <div class="case-header">
+                    <h4>Тренер не работал 2 года → отсудил 700 000 ₸</h4>
+                    <span class="tag tag-fail">Предупреждение работодателю</span>
+                </div>
+                <p><strong>Ситуация:</strong> Спортивный колледж. Тренер приходил когда хотел, занятия не проводил.</p>
+                <p style="margin-top: 10px;"><strong>Почему проиграли:</strong> Договор не обновляли, инструкция с 2011 года, актов нет.</p>
+                <p class="result-text lose">❌ Результат: Работодатель заплатил ~700 000 ₸. Тренер вернулся и продолжил так же.</p>
+            </div>
+
+            <div class="case-card">
+                <div class="case-header">
+                    <h4>Хаос в университете → порядок за 6 месяцев</h4>
+                    <span class="tag tag-success">Успех работодателя</span>
+                </div>
+                <p><strong>Ситуация:</strong> Частный вуз. Преподаватели не вели пары, 4 «мёртвые души» на зарплате.</p>
+                <p style="margin-top: 10px;"><strong>Что сделали:</strong> Новые договоры, инструкции, KPI. Выявили схемы.</p>
+                <p class="result-text win">✅ Результат: Через 6 месяцев — дисциплина, полные аудитории, «мёртвые души» убраны.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Ваш эксперт</h2>
+            <div class="expert-block">
+                <div class="expert-photo">
+                    <img src="main_photo.jpeg" alt="Баяндина Майнур Окановна — юрист">
+                </div>
+                <div class="expert-info">
+                    <h3>Баяндина Майнур Окановна</h3>
+                    <p class="expert-role">Юрист · Член Палаты юридических консультантов</p>
+                    <div class="expert-bio">
+                        <p>27 лет практического опыта. Работала юристом и руководящим работником в крупных холдингах, акционерных обществах, ТОО, государственных и частных компаниях. Веду юридическое сопровождение компаний, выступаю представителем в судах от имени физических и юридических лиц.</p>
+                        <p>20 лет преподавала на юридическом факультете КазНУ имени аль-Фараби. С 2020 года — собственная юридическая практика.</p>
+                    </div>
+                    <div class="expert-awards">
+                        <div class="award-item">🏅 Юбилейная медаль «80 лет КазНУ имени аль-Фараби»</div>
+                        <div class="award-item">🏅 «Лучшая двадцатка преподавателей КазНУ им. Аль-Фараби» (2015)</div>
+                        <div class="award-item">🏅 Юбилейная медаль «20 лет Вооружённых сил РК»</div>
+                        <div class="award-item">🏅 Памятная медаль «30-летие АО КЦДС Атакент»</div>
+                    </div>
+                    <p class="expert-motto">Люблю жить и помогать людям находить решение в разных жизненных ситуациях.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-light">
+        <div class="container" style="max-width: 800px;">
+            <h2 class="section-title">Частые вопросы</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Сколько стоят услуги? <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Для работников: от 200 000 ₸ или % от выигрыша (50/50).<br>
+                    Для работодателей: от 500 000 ₸. Точную стоимость скажем на консультации.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Сколько времени занимает? <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Досудебное урегулирование: 2-4 недели. Суд: 2-4 месяца.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Какие шансы на выигрыш? <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    80% трудовых споров решаются в пользу работника. Для работодателей результат зависит от состояния документов.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Работаете по всему Казахстану? <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Да, удалённо из любого города. Консультации по видеосвязи, при необходимости выезжаем в суд.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    А если проиграю? <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    При оплате за % — вы ничего не платите в случае проигрыша. Мы берёмся только за дела с реальными шансами.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: var(--primary); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="color: white; margin-bottom: 20px;">Готовы решить вашу проблему?</h2>
+            <p style="font-size: 18px; margin-bottom: 30px;">Оставьте заявку — перезвоним в течение 30 минут</p>
+            <button class="btn" onclick="document.getElementById('hero-block').scrollIntoView({behavior:'smooth'})">Получить консультацию</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo" style="color: white; margin-bottom: 15px;">Мир Права</div>
+            <p style="margin-bottom: 20px;"><a href="tel:+77008358257" style="color: white; text-decoration: none;">+7 (700) 835-82-57</a></p>
+            <p style="font-size: 14px; opacity: 0.7;">© 2025 Мир права. Все права защищены.<br><a href="privacy.html" style="color: #9ca3af; text-decoration: underline;">Политика конфиденциальности</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // ДАННЫЕ КВИЗА
+        const quizData = {
+            employer: {
+                questions: [
+                    { q: "Сколько сотрудников в вашей компании?", a: ["До 10 человек", "10–50 человек", "50–200 человек", "Более 200 человек"] },
+                    { q: "Были ли споры за последний год?", a: ["Да, проиграли суд", "Да, выиграли", "Есть проблемные сотрудники", "Нет, всё спокойно"], hint: "80% работодателей проигрывают из-за ошибок в документах" },
+                    { q: "Когда обновляли кадровые документы?", a: ["Менее года назад", "1–3 года назад", "Более 3 лет назад", "Не знаю"], hint: "Должностные инструкции 2011 года — частая причина проигрыша" },
+                    { q: "Кто ведет кадровое делопроизводство?", a: ["Штатный юрист", "Кадровик / HR", "Бухгалтер/Директор", "Аутсорсинг"] },
+                    { q: "С какой ситуацией столкнулись?", a: ["Сотрудник не работает, боюсь уволить", "Уже проиграли суд", "Хочу проверить риски", "Нужно уволить сотрудника", "Шантаж"] },
+                    { q: "Как срочно нужна помощь?", a: ["Уже идет суд", "В ближайший месяц", "В ближайшие 3 месяца", "Просто узнать риски"] }
+                ],
+                resultTitle: "Выявлено 2-4 потенциальных риска в вашей системе",
+                resultText: `<ul>
+                    <li>Устаревшие трудовые договоры и инструкции</li>
+                    <li>Отсутствие актов и фиксации нарушений</li>
+                    <li>Неправильные процедуры увольнения</li>
+                </ul>
+                <p style="margin-top:15px">Аудит за 30 минут покажет конкретные дыры и как их закрыть.</p>`
+            },
+            worker: {
+                questions: [
+                    { q: "Что произошло?", a: ["Незаконно уволили", "Заставляют уйти 'по собственному'", "Не платят зарплату", "Не дали расчет", "Выговор без оснований", "Другое"] },
+                    { q: "Когда это случилось?", a: ["Менее месяца назад", "1–3 месяца назад", "3–6 месяцев назад", "Более 6 месяцев назад", "Прямо сейчас"], hint: "Чем раньше обратитесь — тем выше шансы" },
+                    { q: "Какие документы на руках?", a: ["Договор + приказы", "Только договор", "Ничего нет", "Не уверен"], hint: "Даже без документов можно выиграть дело" },
+                    { q: "Обращались куда-то?", a: ["В трудовую инспекцию", "К юристу", "Нет, не знал куда", "Боялся последствий"] },
+                    { q: "Чего хотите добиться?", a: ["Компенсацию денег", "Восстановление", "И то и другое", "Понять права"] },
+                    { q: "Формат оплаты?", a: ["Фиксированная сумма", "% от выигрыша", "Узнать цену"], hint: "Работаем за % от выигрыша — вы ничем не рискуете" }
+                ],
+                resultTitle: "Вы можете претендовать на компенсацию",
+                resultText: `<ul>
+                    <li>Зарплату за период вынужденного прогула (3-6 месяцев)</li>
+                    <li>Компенсацию морального вреда</li>
+                    <li>Возмещение судебных расходов</li>
+                </ul>
+                <p style="margin-top:15px">80% таких дел выигрываются. Узнайте ваши шансы за 30 минут.</p>`
+            }
+        };
+
+        // ЛОГИКА
+        let currentRole = '';
+        let currentStep = 0;
+
+        function startQuiz(role) {
+            currentRole = role;
+            currentStep = 0;
+            document.getElementById('hero-block').classList.add('hidden');
+            document.getElementById('quiz-section').classList.remove('hidden');
+            renderQuestion();
+        }
+
+        function closeQuiz() {
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('hero-block').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+            document.getElementById('quiz-question-container').classList.remove('hidden');
+        }
+
+        function renderQuestion() {
+            const data = quizData[currentRole].questions[currentStep];
+            document.getElementById('question-title').innerText = data.q;
+            
+            // Отрисовка кнопок
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+            data.a.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt;
+                btn.onclick = nextStep;
+                container.appendChild(btn);
+            });
+
+            // Подсказка
+            const hintBox = document.getElementById('hint-box');
+            if (data.hint) {
+                hintBox.innerText = "💡 " + data.hint;
+                hintBox.classList.remove('hidden');
+            } else {
+                hintBox.classList.add('hidden');
+            }
+
+            // Прогресс
+            const total = quizData[currentRole].questions.length;
+            document.getElementById('quiz-step-text').innerText = `Вопрос ${currentStep + 1} из ${total}`;
+            document.getElementById('progress-fill').style.width = `${((currentStep + 1) / total) * 100}%`;
+            
+            // Кнопка назад
+            document.getElementById('prev-btn').style.visibility = currentStep === 0 ? 'hidden' : 'visible';
+        }
+
+        function nextStep() {
+            if (currentStep < quizData[currentRole].questions.length - 1) {
+                currentStep++;
+                renderQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                renderQuestion();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('quiz-question-container').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+            
+            const resData = quizData[currentRole];
+            document.getElementById('final-title').innerText = resData.resultTitle;
+            document.getElementById('final-text').innerHTML = resData.resultText;
+            document.getElementById('final-subtitle').innerText = currentRole === 'employer' ? "Выявленные риски:" : "Ваши возможности:";
+        }
+
+        function submitForm(e) {
+            e.preventDefault();
+            window.location.href = 'thank.html';
+        }
+
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            item.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
