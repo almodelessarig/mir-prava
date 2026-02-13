@@ -6,22 +6,22 @@ export default async function handler(req, res) {
   const TELEGRAM_BOT_TOKEN = '8565426544:AAGEAyyt-bJ0YEhKZu5pTaAx932A_jCKBcY';
   const TELEGRAM_CHAT_ID = '-5279467001';
 
-  // Настройки amoCRM — TODO: заполнить реальными данными
-  const AMOCRM_SUBDOMAIN = 'mirprava'; // TODO: указать ваш поддомен amoCRM
-  const AMOCRM_INTEGRATION_ID = 'TODO_INTEGRATION_ID'; // TODO: ID интеграции
-  const AMOCRM_SECRET_KEY = 'TODO_SECRET_KEY'; // TODO: секретный ключ интеграции
-  const AMOCRM_REDIRECT_URI = 'https://mirprava.kz'; // URI редиректа
+  // Настройки amoCRM
+  const AMOCRM_SUBDOMAIN = 'mirpravakz';
+  const AMOCRM_INTEGRATION_ID = '9bd49bc3-25e1-4f22-a18d-cbce40fdbee3';
+  const AMOCRM_SECRET_KEY = '4VyxGkzafwJKyTbEKS23z2aDyTh13e36VrlRW00BnZ7fzirh0FafnCydWQJkQBxi';
+  const AMOCRM_REDIRECT_URI = 'https://mirprava.kz';
 
-  // Воронка и этап для новых заявок — TODO: заполнить реальными ID
-  const AMOCRM_PIPELINE_ID = 0; // TODO: ID воронки
-  const AMOCRM_STATUS_ID = 0;   // TODO: ID этапа "Неразобранное"
+  // Воронка и этап для новых заявок
+  const AMOCRM_PIPELINE_ID = 10539470; // "Воронка"
+  const AMOCRM_STATUS_ID = 83152998;   // "Неразобранное"
 
   // Redis клиент
   let redis = null;
 
   async function getRedisClient() {
     if (!redis) {
-      redis = createClient({ url: process.env.REDIS_URL });
+      redis = createClient({ url: process.env.KV_URL || process.env.REDIS_URL });
       redis.on('error', err => console.error('Redis error:', err));
       await redis.connect();
     }
@@ -32,8 +32,8 @@ export default async function handler(req, res) {
   async function getTokens() {
     try {
       const client = await getRedisClient();
-      const accessToken = await client.get('amocrm_access_token');
-      const refreshToken = await client.get('amocrm_refresh_token');
+      const accessToken = await client.get('mirprava:amocrm_access_token');
+      const refreshToken = await client.get('mirprava:amocrm_refresh_token');
       return { accessToken, refreshToken };
     } catch (error) {
       console.error('Error getting tokens from Redis:', error);
@@ -45,8 +45,8 @@ export default async function handler(req, res) {
   async function saveTokens(accessToken, refreshToken) {
     try {
       const client = await getRedisClient();
-      await client.set('amocrm_access_token', accessToken);
-      await client.set('amocrm_refresh_token', refreshToken);
+      await client.set('mirprava:amocrm_access_token', accessToken);
+      await client.set('mirprava:amocrm_refresh_token', refreshToken);
       return true;
     } catch (error) {
       console.error('Error saving tokens to Redis:', error);

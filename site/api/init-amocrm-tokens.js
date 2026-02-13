@@ -23,12 +23,12 @@ export default async function handler(req, res) {
   let redis = null;
 
   try {
-    redis = createClient({ url: process.env.REDIS_URL });
+    redis = createClient({ url: process.env.KV_URL || process.env.REDIS_URL });
     await redis.connect();
 
-    await redis.set('amocrm_access_token', access_token);
-    await redis.set('amocrm_refresh_token', refresh_token);
-    await redis.set('amocrm_token_updated_at', new Date().toISOString());
+    await redis.set('mirprava:amocrm_access_token', access_token);
+    await redis.set('mirprava:amocrm_refresh_token', refresh_token);
+    await redis.set('mirprava:amocrm_token_updated_at', new Date().toISOString());
 
     res.status(200).json({
       success: true,

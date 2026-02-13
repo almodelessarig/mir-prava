@@ -2,10 +2,10 @@
 // Запускается ежедневно в 6:00 UTC
 import { createClient } from 'redis';
 
-// Настройки amoCRM — TODO: заполнить реальными данными
-const AMOCRM_SUBDOMAIN = 'mirprava'; // TODO: указать ваш поддомен amoCRM
-const AMOCRM_INTEGRATION_ID = 'TODO_INTEGRATION_ID'; // TODO: ID интеграции
-const AMOCRM_SECRET_KEY = 'TODO_SECRET_KEY'; // TODO: секретный ключ
+// Настройки amoCRM
+const AMOCRM_SUBDOMAIN = 'mirpravakz';
+const AMOCRM_INTEGRATION_ID = '9bd49bc3-25e1-4f22-a18d-cbce40fdbee3';
+const AMOCRM_SECRET_KEY = '4VyxGkzafwJKyTbEKS23z2aDyTh13e36VrlRW00BnZ7fzirh0FafnCydWQJkQBxi';
 const AMOCRM_REDIRECT_URI = 'https://mirprava.kz';
 
 export default async function handler(req, res) {
@@ -25,10 +25,10 @@ export default async function handler(req, res) {
   let redis = null;
 
   try {
-    redis = createClient({ url: process.env.REDIS_URL });
+    redis = createClient({ url: process.env.KV_URL || process.env.REDIS_URL });
     await redis.connect();
 
-    const refreshToken = await redis.get('amocrm_refresh_token');
+    const refreshToken = await redis.get('mirprava:amocrm_refresh_token');
 
     if (!refreshToken) {
       console.error('No refresh token found in Redis');
@@ -53,9 +53,9 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (data.access_token) {
-      await redis.set('amocrm_access_token', data.access_token);
-      await redis.set('amocrm_refresh_token', data.refresh_token);
-      await redis.set('amocrm_token_updated_at', new Date().toISOString());
+      await redis.set('mirprava:amocrm_access_token', data.access_token);
+      await redis.set('mirprava:amocrm_refresh_token', data.refresh_token);
+      await redis.set('mirprava:amocrm_token_updated_at', new Date().toISOString());
 
       console.log('Tokens refreshed successfully at', new Date().toISOString());
       res.status(200).json({
