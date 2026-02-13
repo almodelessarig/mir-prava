@@ -233,15 +233,14 @@ export default async function handler(req, res) {
         ]
       };
 
-      // UTM-поля для сделки (будут записаны PATCH-запросом после создания)
+      // UTM-поля для сделки — пользовательские поля (видимые в UI карточки)
       const leadCustomFields = [
-        { field_id: 3691501, values: [{ value: utm_source }] },    // utm_source
-        { field_id: 3691497, values: [{ value: utm_medium }] },    // utm_medium
-        { field_id: 3691499, values: [{ value: utm_campaign }] },  // utm_campaign
-        { field_id: 3691495, values: [{ value: utm_content }] },   // utm_content
-        { field_id: 3691503, values: [{ value: utm_ad_name }] },   // utm_term (ad_name)
-        { field_id: 3691509, values: [{ value: referrer }] },      // referrer
-        { field_id: 3691505, values: [{ value: page_url }] }       // utm_referrer (page url)
+        { field_id: 3722207, values: [{ value: utm_source }] },    // utm_source (text)
+        { field_id: 3722209, values: [{ value: utm_medium }] },    // utm_medium (text)
+        { field_id: 3722211, values: [{ value: utm_campaign }] },  // utm_campaign (text)
+        { field_id: 3722213, values: [{ value: utm_content }] },   // utm_content (text)
+        { field_id: 3722215, values: [{ value: utm_ad_name }] },   // utm_ad_name (text)
+        { field_id: 3722231, values: [{ value: page_url }] }       // utm_referrer (text)
       ];
 
       // Название сделки с контекстом
