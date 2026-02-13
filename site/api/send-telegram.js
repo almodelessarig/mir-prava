@@ -12,9 +12,8 @@ export default async function handler(req, res) {
   const AMOCRM_SECRET_KEY = '4VyxGkzafwJKyTbEKS23z2aDyTh13e36VrlRW00BnZ7fzirh0FafnCydWQJkQBxi';
   const AMOCRM_REDIRECT_URI = 'https://mirprava.kz';
 
-  // Воронка и этап для новых заявок
+  // Воронка для новых заявок
   const AMOCRM_PIPELINE_ID = 10539470; // "Воронка"
-  const AMOCRM_STATUS_ID = 83152998;   // "Неразобранное"
 
   // Redis клиент
   let redis = null;
@@ -259,28 +258,42 @@ export default async function handler(req, res) {
       // UTM-примечание
       const utmNote = `UTM Source: ${utm_source}\nUTM Medium: ${utm_medium}\nUTM Campaign: ${utm_campaign}\nUTM Content: ${utm_content}\nAd Name: ${utm_ad_name}\nСтраница: ${page_url}\nИсточник перехода: ${referrer}`;
 
-      // Создание сделки + контакта (без UTM-полей — они пишутся отдельно PATCH)
-      const amoData = [
+      // Данные для unsorted/forms — заявка попадёт в "Неразобранное"
+      const nowUnix = Math.floor(Date.now() / 1000);
+      const unsortedData = [
         {
-          name: leadName,
+          source_name: 'Сайт mirprava.kz',
+          source_uid: 'mirprava-website-form',
           pipeline_id: AMOCRM_PIPELINE_ID,
-          status_id: AMOCRM_STATUS_ID,
+          created_at: nowUnix,
           _embedded: {
+            leads: [
+              {
+                name: leadName
+              }
+            ],
             contacts: [contactData]
+          },
+          metadata: {
+            form_id: 'mirprava_lead_form',
+            form_sent_at: nowUnix,
+            form_name: leadName,
+            form_page: page_url,
+            referer: referrer
           }
         }
       ];
 
-      // Функция отправки в amoCRM
+      // Функция отправки в amoCRM (unsorted/forms)
       async function sendToAmoCRM(token) {
-        const amoUrl = `https://${AMOCRM_SUBDOMAIN}.amocrm.ru/api/v4/leads/complex`;
+        const amoUrl = `https://${AMOCRM_SUBDOMAIN}.amocrm.ru/api/v4/leads/unsorted/forms`;
         return await fetch(amoUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
           },
-          body: JSON.stringify(amoData)
+          body: JSON.stringify(unsortedData)
         });
       }
 
@@ -316,8 +329,11 @@ export default async function handler(req, res) {
         }
       }
 
-      if (amoResponse.ok && amoResult[0]?.id) {
-        const leadId = amoResult[0].id;
+      // Извлекаем ID сделки из ответа unsorted
+      const leadId = amoResult?._embedded?.unsorted?.[0]?._embedded?.leads?.[0]?.id;
+
+      if (amoResponse.ok && leadId) {
+        console.log('Unsorted lead created, ID:', leadId);
 
         // 1. PATCH: записываем UTM-поля в сделку
         const patchUrl = `https://${AMOCRM_SUBDOMAIN}.amocrm.ru/api/v4/leads/${leadId}`;
@@ -357,7 +373,7 @@ export default async function handler(req, res) {
           message: 'Заявка отправлена в Telegram и amoCRM!'
         });
       } else {
-        console.error('amoCRM API error:', amoResult);
+        console.error('amoCRM unsorted API error:', amoResult);
         res.status(200).json({
           success: true,
           message: 'Заявка отправлена в Telegram, ошибка amoCRM'
