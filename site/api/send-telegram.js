@@ -233,13 +233,15 @@ export default async function handler(req, res) {
         ]
       };
 
-      // Формирование данных для сделки с UTM-метками
+      // Формирование данных для сделки с UTM-метками (field_id для надёжности)
       const leadCustomFields = [
-        { field_code: 'UTM_SOURCE', values: [{ value: utm_source }] },
-        { field_code: 'UTM_MEDIUM', values: [{ value: utm_medium }] },
-        { field_code: 'UTM_CAMPAIGN', values: [{ value: utm_campaign }] },
-        { field_code: 'UTM_CONTENT', values: [{ value: utm_content }] },
-        { field_code: 'REFERRER', values: [{ value: referrer }] }
+        { field_id: 3691501, values: [{ value: utm_source }] },    // utm_source
+        { field_id: 3691497, values: [{ value: utm_medium }] },    // utm_medium
+        { field_id: 3691499, values: [{ value: utm_campaign }] },  // utm_campaign
+        { field_id: 3691495, values: [{ value: utm_content }] },   // utm_content
+        { field_id: 3691503, values: [{ value: utm_ad_name }] },   // utm_term (ad_name)
+        { field_id: 3691509, values: [{ value: referrer }] },      // referrer
+        { field_id: 3691505, values: [{ value: page_url }] }       // utm_referrer (page url)
       ];
 
       // Название сделки с контекстом
