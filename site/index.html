@@ -340,21 +340,21 @@
                         <form onsubmit="submitForm(event)">
                             <div class="form-group">
                                 <label>Ваше имя</label>
-                                <input type="text" class="form-control" required placeholder="Введите имя">
+                                <input type="text" class="form-control" id="form-name" required placeholder="Введите имя">
                             </div>
                             <div class="form-group">
                                 <label>Телефон</label>
-                                <input type="tel" class="form-control" required placeholder="+7 (___) ___-__-__">
+                                <input type="tel" class="form-control" id="form-phone" required placeholder="+7 (___) ___-__-__">
                             </div>
                             <div class="form-group">
                                 <label>Мессенджер</label>
-                                <select class="form-control">
+                                <select class="form-control" id="form-messenger">
                                     <option>WhatsApp</option>
                                     <option>Telegram</option>
                                     <option>Звонок</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-block">Получить консультацию</button>
+                            <button type="submit" class="btn btn-block" id="form-submit-btn">Получить консультацию</button>
                             <p style="font-size: 12px; color: var(--text-gray); margin-top: 15px;">
                                 ✓ Перезвоним за 30 минут<br>✓ Данные защищены
                             </p>
@@ -672,9 +672,73 @@
             document.getElementById('final-subtitle').innerText = currentRole === 'employer' ? "Выявленные риски:" : "Ваши возможности:";
         }
 
-        function submitForm(e) {
+        // Получение UTM-меток из URL
+        function getUtmParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                utm_source: params.get('utm_source') || '',
+                utm_medium: params.get('utm_medium') || '',
+                utm_campaign: params.get('utm_campaign') || '',
+                utm_content: params.get('utm_content') || '',
+                utm_ad_name: params.get('utm_ad_name') || params.get('ad_name') || ''
+            };
+        }
+
+        async function submitForm(e) {
             e.preventDefault();
-            window.location.href = 'thank.html';
+
+            const submitBtn = document.getElementById('form-submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Отправка...';
+
+            const formData = {
+                name: document.getElementById('form-name').value,
+                phone: document.getElementById('form-phone').value,
+                messenger: document.getElementById('form-messenger').value,
+                page: 'main',
+                role: currentRole || '',
+                page_url: window.location.href,
+                referrer: document.referrer || 'Прямой заход',
+                ...getUtmParams()
+            };
+
+            try {
+                const response = await fetch('/api/send-telegram', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Facebook Pixel
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'Lead', {
+                            content_name: 'Заявка на консультацию',
+                            content_category: currentRole || 'main'
+                        });
+                    }
+                    // Яндекс.Метрика
+                    if (typeof ym !== 'undefined') {
+                        ym(106815816, 'reachGoal', 'lead_form_submit', {
+                            name: formData.name,
+                            role: formData.role
+                        });
+                    }
+                    window.location.href = '/thank';
+                } else {
+                    alert('Ошибка отправки. Позвоните нам: +7 (700) 835-82-57');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                }
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert('Ошибка отправки. Позвоните нам: +7 (700) 835-82-57');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
         }
 
         function toggleFaq(el) {

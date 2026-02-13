@@ -1032,12 +1032,82 @@
             }
         }
 
-        function submitLead(e) {
+        // Получение UTM-меток из URL
+        function getUtmParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                utm_source: params.get('utm_source') || '',
+                utm_medium: params.get('utm_medium') || '',
+                utm_campaign: params.get('utm_campaign') || '',
+                utm_content: params.get('utm_content') || '',
+                utm_ad_name: params.get('utm_ad_name') || params.get('ad_name') || ''
+            };
+        }
+
+        // Определение уровня риска
+        function getRiskLevel() {
+            let score = 0;
+            answers.forEach((a, i) => { score += questions[i].scores[a]; });
+            if (score >= 6) return 'Высокий риск';
+            if (score >= 3) return 'Средний риск';
+            return 'Низкий риск';
+        }
+
+        async function submitLead(e) {
             e.preventDefault();
-            const name = document.getElementById('lead-name').value;
-            const phone = document.getElementById('lead-phone').value;
-            console.log('Lead:', { name, phone, answers, page: 'audit' });
-            window.location.href = '/thank.html';
+
+            const submitBtn = document.querySelector('#lead-form button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Отправка...';
+
+            const formData = {
+                name: document.getElementById('lead-name').value,
+                phone: document.getElementById('lead-phone').value,
+                page: 'audit',
+                risk_level: getRiskLevel(),
+                page_url: window.location.href,
+                referrer: document.referrer || 'Прямой заход',
+                ...getUtmParams()
+            };
+
+            try {
+                const response = await fetch('/api/send-telegram', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Facebook Pixel
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'Lead', {
+                            content_name: 'Заявка на аудит',
+                            content_category: 'audit'
+                        });
+                    }
+                    // Яндекс.Метрика
+                    if (typeof ym !== 'undefined') {
+                        ym(106815816, 'reachGoal', 'lead_form_submit', {
+                            name: formData.name,
+                            page: 'audit',
+                            risk_level: formData.risk_level
+                        });
+                    }
+                    window.location.href = '/thank';
+                } else {
+                    alert('Ошибка отправки. Позвоните нам: +7 (700) 835-82-57');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                }
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert('Ошибка отправки. Позвоните нам: +7 (700) 835-82-57');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
         }
 
         // Init quiz

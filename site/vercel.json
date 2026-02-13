@@ -1,3 +1,10 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "crons": [
+    {
+      "path": "/api/cron-refresh-token",
+      "schedule": "0 6 * * *"
+    }
+  ]
 }
