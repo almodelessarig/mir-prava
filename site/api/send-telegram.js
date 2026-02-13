@@ -255,10 +255,8 @@ export default async function handler(req, res) {
         leadName += 'Сайт';
       }
 
-      // UTM-примечание
-      const utmNote = `UTM Source: ${utm_source}\nUTM Medium: ${utm_medium}\nUTM Campaign: ${utm_campaign}\nUTM Content: ${utm_content}\nAd Name: ${utm_ad_name}\nСтраница: ${page_url}\nИсточник перехода: ${referrer}`;
-
       // Данные для unsorted/forms — заявка попадёт в "Неразобранное"
+      // UTM-поля включены прямо в lead, без отдельного PATCH (PATCH выбивает из Неразобранного)
       const nowUnix = Math.floor(Date.now() / 1000);
       const unsortedData = [
         {
@@ -269,7 +267,8 @@ export default async function handler(req, res) {
           _embedded: {
             leads: [
               {
-                name: leadName
+                name: leadName,
+                custom_fields_values: leadCustomFields
               }
             ],
             contacts: [contactData]
@@ -334,39 +333,6 @@ export default async function handler(req, res) {
 
       if (amoResponse.ok && leadId) {
         console.log('Unsorted lead created, ID:', leadId);
-
-        // 1. PATCH: записываем UTM-поля в сделку
-        const patchUrl = `https://${AMOCRM_SUBDOMAIN}.amocrm.ru/api/v4/leads/${leadId}`;
-        const patchResp = await fetch(patchUrl, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-          },
-          body: JSON.stringify({
-            custom_fields_values: leadCustomFields
-          })
-        });
-        const patchResult = await patchResp.json();
-        console.log('PATCH UTM fields result:', patchResp.status, JSON.stringify(patchResult));
-
-        // 2. Добавляем примечание с UTM к сделке
-        const noteUrl = `https://${AMOCRM_SUBDOMAIN}.amocrm.ru/api/v4/leads/${leadId}/notes`;
-        await fetch(noteUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-          },
-          body: JSON.stringify([
-            {
-              note_type: 'common',
-              params: {
-                text: utmNote
-              }
-            }
-          ])
-        });
 
         res.status(200).json({
           success: true,
