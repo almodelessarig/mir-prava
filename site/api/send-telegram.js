@@ -233,7 +233,7 @@ export default async function handler(req, res) {
         ]
       };
 
-      // Формирование данных для сделки с UTM-метками (field_id для надёжности)
+      // UTM-поля для сделки (будут записаны PATCH-запросом после создания)
       const leadCustomFields = [
         { field_id: 3691501, values: [{ value: utm_source }] },    // utm_source
         { field_id: 3691497, values: [{ value: utm_medium }] },    // utm_medium
@@ -257,20 +257,15 @@ export default async function handler(req, res) {
         leadName += 'Сайт';
       }
 
-      const leadData = {
-        name: leadName,
-        pipeline_id: AMOCRM_PIPELINE_ID,
-        status_id: AMOCRM_STATUS_ID,
-        custom_fields_values: leadCustomFields
-      };
-
       // UTM-примечание
       const utmNote = `UTM Source: ${utm_source}\nUTM Medium: ${utm_medium}\nUTM Campaign: ${utm_campaign}\nUTM Content: ${utm_content}\nAd Name: ${utm_ad_name}\nСтраница: ${page_url}\nИсточник перехода: ${referrer}`;
 
-      // Создание комплексной сущности (сделка + контакт)
+      // Создание сделки + контакта (без UTM-полей — они пишутся отдельно PATCH)
       const amoData = [
         {
-          ...leadData,
+          name: leadName,
+          pipeline_id: AMOCRM_PIPELINE_ID,
+          status_id: AMOCRM_STATUS_ID,
           _embedded: {
             contacts: [contactData]
           }
@@ -323,10 +318,25 @@ export default async function handler(req, res) {
       }
 
       if (amoResponse.ok && amoResult[0]?.id) {
-        // Добавляем примечание с UTM к сделке
         const leadId = amoResult[0].id;
-        const noteUrl = `https://${AMOCRM_SUBDOMAIN}.amocrm.ru/api/v4/leads/${leadId}/notes`;
 
+        // 1. PATCH: записываем UTM-поля в сделку
+        const patchUrl = `https://${AMOCRM_SUBDOMAIN}.amocrm.ru/api/v4/leads/${leadId}`;
+        const patchResp = await fetch(patchUrl, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+          },
+          body: JSON.stringify({
+            custom_fields_values: leadCustomFields
+          })
+        });
+        const patchResult = await patchResp.json();
+        console.log('PATCH UTM fields result:', patchResp.status, JSON.stringify(patchResult));
+
+        // 2. Добавляем примечание с UTM к сделке
+        const noteUrl = `https://${AMOCRM_SUBDOMAIN}.amocrm.ru/api/v4/leads/${leadId}/notes`;
         await fetch(noteUrl, {
           method: 'POST',
           headers: {
