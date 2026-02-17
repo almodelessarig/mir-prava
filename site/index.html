@@ -713,19 +713,22 @@
                 const result = await response.json();
 
                 if (result.success) {
-                    // Facebook Pixel
-                    if (typeof fbq !== 'undefined') {
-                        fbq('track', 'Lead', {
-                            content_name: 'Заявка на консультацию',
-                            content_category: currentRole || 'main'
-                        });
-                    }
-                    // Яндекс.Метрика
-                    if (typeof ym !== 'undefined') {
-                        ym(106815816, 'reachGoal', 'lead_form_submit', {
-                            name: formData.name,
-                            role: formData.role
-                        });
+                    if (!sessionStorage.getItem('lead_sent')) {
+                        sessionStorage.setItem('lead_sent', '1');
+                        // Facebook Pixel
+                        if (typeof fbq !== 'undefined') {
+                            fbq('track', 'Lead', {
+                                content_name: 'Заявка на консультацию',
+                                content_category: currentRole || 'main'
+                            });
+                        }
+                        // Яндекс.Метрика
+                        if (typeof ym !== 'undefined') {
+                            ym(106815816, 'reachGoal', 'lead_form_submit', {
+                                name: formData.name,
+                                role: formData.role
+                            });
+                        }
                     }
                     window.location.href = '/thank';
                 } else {

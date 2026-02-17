@@ -1211,17 +1211,20 @@
                 var result = await resp.json();
 
                 if (result.success) {
-                    if (typeof fbq !== 'undefined') {
-                        fbq('track', 'Lead', {
-                            content_name: 'Заявка работник',
-                            content_category: 'worker'
-                        });
-                    }
-                    if (typeof ym !== 'undefined') {
-                        ym(106815816, 'reachGoal', 'lead_form_submit', {
-                            name: data.name,
-                            role: 'worker'
-                        });
+                    if (!sessionStorage.getItem('lead_sent')) {
+                        sessionStorage.setItem('lead_sent', '1');
+                        if (typeof fbq !== 'undefined') {
+                            fbq('track', 'Lead', {
+                                content_name: 'Заявка работник',
+                                content_category: 'worker'
+                            });
+                        }
+                        if (typeof ym !== 'undefined') {
+                            ym(106815816, 'reachGoal', 'lead_form_submit', {
+                                name: data.name,
+                                role: 'worker'
+                            });
+                        }
                     }
                     window.location.href = '/thank';
                 } else {
