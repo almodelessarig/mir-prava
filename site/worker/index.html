@@ -957,14 +957,6 @@
                             <label for="f-phone">Телефон</label>
                             <input type="tel" class="form-control" id="f-phone" required placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel">
                         </div>
-                        <div class="form-group">
-                            <label for="f-messenger">Удобный мессенджер</label>
-                            <select class="form-control" id="f-messenger">
-                                <option>WhatsApp</option>
-                                <option>Telegram</option>
-                                <option>Звонок</option>
-                            </select>
-                        </div>
                         <button type="submit" class="btn btn-cta form-submit" id="form-btn">Получить бесплатную оценку</button>
                         <p class="form-note">✓ Перезвоним в течение 30 минут · ✓ Данные защищены</p>
                     </form>
@@ -1199,7 +1191,7 @@
             var data = {
                 name: document.getElementById('f-name').value,
                 phone: document.getElementById('f-phone').value,
-                messenger: document.getElementById('f-messenger').value,
+                messenger: 'WhatsApp',
                 page: 'worker',
                 role: 'worker',
                 quiz_answers: quizAnswers,
