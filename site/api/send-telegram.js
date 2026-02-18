@@ -192,6 +192,21 @@ export default async function handler(req, res) {
       return;
     }
 
+    // Функция оповещения об ошибке amoCRM в Telegram
+    async function notifyAmoCRMError(reason) {
+      try {
+        const alertMsg = `⚠️ <b>amoCRM ОШИБКА</b>\n\n` +
+          `Заявка от <b>${name}</b> (${phone}) отправлена в Telegram, но НЕ попала в amoCRM.\n\n` +
+          `<b>Причина:</b> ${reason}\n` +
+          `<b>Время:</b> ${timestamp}`;
+        await fetch(telegramApiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: alertMsg, parse_mode: 'HTML' })
+        });
+      } catch (e) { console.error('Failed to send amoCRM alert:', e); }
+    }
+
     // Отправка данных в amoCRM
     try {
       // Проверяем, настроен ли amoCRM
@@ -209,6 +224,7 @@ export default async function handler(req, res) {
 
       if (!accessToken || !refreshToken) {
         console.error('No tokens found in Redis');
+        await notifyAmoCRMError('Токены amoCRM не найдены в Redis. Нужно переинициализировать.');
         res.status(200).json({
           success: true,
           message: 'Заявка отправлена в Telegram, но токены amoCRM не настроены'
@@ -312,6 +328,7 @@ export default async function handler(req, res) {
 
           if (!amoResponse.ok) {
             console.error('amoCRM API error after token refresh:', amoResult);
+            await notifyAmoCRMError('Ошибка API amoCRM после обновления токена: ' + JSON.stringify(amoResult).slice(0, 200));
             res.status(200).json({
               success: true,
               message: 'Заявка отправлена в Telegram, но ошибка amoCRM'
@@ -320,6 +337,7 @@ export default async function handler(req, res) {
           }
         } else {
           console.error('Failed to refresh amoCRM token');
+          await notifyAmoCRMError('Не удалось обновить refresh-токен. Нужна переинициализация.');
           res.status(200).json({
             success: true,
             message: 'Заявка отправлена в Telegram, но ошибка обновления токена amoCRM'
@@ -340,6 +358,7 @@ export default async function handler(req, res) {
         });
       } else {
         console.error('amoCRM unsorted API error:', amoResult);
+        await notifyAmoCRMError('Ошибка unsorted/forms: ' + JSON.stringify(amoResult).slice(0, 200));
         res.status(200).json({
           success: true,
           message: 'Заявка отправлена в Telegram, ошибка amoCRM'
@@ -347,6 +366,7 @@ export default async function handler(req, res) {
       }
     } catch (amoError) {
       console.error('amoCRM error:', amoError);
+      await notifyAmoCRMError('Исключение: ' + (amoError.message || String(amoError)).slice(0, 200));
       res.status(200).json({
         success: true,
         message: 'Заявка отправлена в Telegram, ошибка amoCRM'
