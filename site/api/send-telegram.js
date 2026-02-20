@@ -338,14 +338,16 @@ export default async function handler(req, res) {
         console.log('amoCRM lead created, ID:', leadId);
         res.status(200).json({ success: true, message: 'Заявка отправлена в Telegram и amoCRM!' });
       } else {
-        console.error('amoCRM error:', amoResponse.status, amoResult);
-        await notifyAmoCRMError(name, phone, `HTTP ${amoResponse.status}: ${JSON.stringify(amoResult).slice(0, 200)}`, timestamp);
-        res.status(200).json({ success: true, message: 'Telegram OK, amoCRM error' });
+        const errDetail = `HTTP ${amoResponse.status}: ${JSON.stringify(amoResult).slice(0, 300)}`;
+        console.error('amoCRM error:', errDetail);
+        await notifyAmoCRMError(name, phone, errDetail, timestamp);
+        res.status(200).json({ success: true, message: 'Telegram OK, amoCRM error', debug: errDetail });
       }
     } catch (amoError) {
-      console.error('amoCRM exception:', amoError);
-      await notifyAmoCRMError(name, phone, 'Исключение: ' + (amoError.message || String(amoError)).slice(0, 200), timestamp);
-      res.status(200).json({ success: true, message: 'Telegram OK, amoCRM exception' });
+      const errDetail = 'Exception: ' + (amoError.message || String(amoError)).slice(0, 300);
+      console.error('amoCRM exception:', errDetail);
+      await notifyAmoCRMError(name, phone, errDetail, timestamp);
+      res.status(200).json({ success: true, message: 'Telegram OK, amoCRM exception', debug: errDetail });
     }
   } catch (error) {
     console.error('Server error:', error);
