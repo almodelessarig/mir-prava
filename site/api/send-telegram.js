@@ -341,13 +341,13 @@ export default async function handler(req, res) {
         const errDetail = `HTTP ${amoResponse.status}: ${JSON.stringify(amoResult).slice(0, 300)}`;
         console.error('amoCRM error:', errDetail);
         await notifyAmoCRMError(name, phone, errDetail, timestamp);
-        res.status(200).json({ success: true, message: 'Telegram OK, amoCRM error', debug: errDetail });
+        res.status(200).json({ success: true, message: 'Telegram OK, amoCRM error' });
       }
     } catch (amoError) {
       const errDetail = 'Exception: ' + (amoError.message || String(amoError)).slice(0, 300);
       console.error('amoCRM exception:', errDetail);
       await notifyAmoCRMError(name, phone, errDetail, timestamp);
-      res.status(200).json({ success: true, message: 'Telegram OK, amoCRM exception', debug: errDetail });
+      res.status(200).json({ success: true, message: 'Telegram OK, amoCRM exception' });
     }
   } catch (error) {
     console.error('Server error:', error);
